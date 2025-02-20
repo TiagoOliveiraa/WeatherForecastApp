@@ -12,7 +12,8 @@ function WeatherForecastRow(props: WeatherForecastRowProps){
     if(props.forecastInfo){
         let count = 0
         props.forecastInfo.forEach(item => {
-            const dateKey = item.dt_txt.split(" ")[0]
+            const dateKey = item.dt_txt.split(" ")[0];
+            const hour = item.dt_txt.split(" ")[1];
             const dayDate = new Date(dateKey);
             const dayOfWeek = new Intl.DateTimeFormat("en-US", { weekday: "short" }).format(dayDate);
             
@@ -30,6 +31,9 @@ function WeatherForecastRow(props: WeatherForecastRowProps){
                 }else if(dailyTemps[dateKey]){
                     dailyTemps[dateKey].max = Math.max(dailyTemps[dateKey].max, item.main.temp_max);
                     dailyTemps[dateKey].min = Math.min(dailyTemps[dateKey].min, item.main.temp_min);
+                    if(hour === "12:00:00"){
+                        dailyTemps[dateKey].icon = item.weather[0].icon
+                    }
                 }
             }
         })
