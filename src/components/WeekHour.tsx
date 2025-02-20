@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { WeekHourProps } from "../types/weather";
 import { WeekAndTimeContainer } from "../styles/containers";
 
@@ -26,17 +25,6 @@ function WeekHour(props: WeekHourProps){
         const targetTime = new Date(utcTime + offsetInSeconds * 1000); // Aplica o offset
         return targetTime.toLocaleTimeString();
     }
-    
-    function GetCurrentTime() {
-        if(props.weatherInfo){
-            const newTime = getTimeFromTimezone(props.weatherInfo.timezone);
-            setTime(newTime); 
-        }else {
-            const newTime = new Date().toLocaleTimeString();
-            setTime(newTime);
-        }
-      }
-
     
 
 

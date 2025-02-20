@@ -57,9 +57,11 @@ function TemperatureDifferenceChart(props: TemperatureDifferenceChartProps) {
             >
             <YAxis domain={['auto', 'auto']} padding={{ top: 40, bottom: 40 }} hide={true}/>
             <XAxis dataKey="weekDay" />
-            <Tooltip />
-            <Line type="monotone" dataKey="temp" stroke="#8884d8">
-                <LabelList dataKey="temp" position="top" />
+            <Tooltip formatter={(value) => `${value}${props.unit}`} />
+            <Line type="monotone" dataKey="max" stroke="#E5989B"></Line>
+                <LabelList dataKey="max" position="top" />
+            <Line type="monotone" dataKey="min" stroke="#89A8B2">
+                <LabelList dataKey="min" position="bottom" />
             </Line>
             </LineChart>
         </ResponsiveContainer>

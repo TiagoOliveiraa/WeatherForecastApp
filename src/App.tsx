@@ -23,6 +23,7 @@ const libraries: Libraries = ["visualization"];
 function App() {
 
   const [location, setLocation] = useState<string>("")
+  const [lastValidLocation, setLastValidLocation] = useState<string>("")
   const [forecastInfo, setForecastInfo] = useState<ForecastInfoList[]>([])
   const [currentDayInfo, setCurrentDayInfo] = useState<WeatherResponseData | null>(null)
   const [cityInfo, setCityInfo] = useState<ForecastInfoCity>()
@@ -40,6 +41,9 @@ function App() {
   function updateLocation(location: string){
     setLocation(location)
   }
+  function updateLastLocation(location: string) {
+    setLastValidLocation(location)
+  }
   function updateCurrentDay(data: WeatherResponseData){
     setCurrentDayInfo(data);
   }
@@ -53,6 +57,15 @@ function App() {
     const coordinates = await translateToCoords(location)
     if("error" in coordinates) {
       toast.error(coordinates.error);
+      setLoading(false);
+      if(lastValidLocation != ""){
+        updateLocation(lastValidLocation)
+      }else{
+        return;
+      }
+    }
+
+    if (!Array.isArray(coordinates) || coordinates.length === 0) {
       setLoading(false);
       return;
     }
@@ -75,6 +88,7 @@ function App() {
     updateForecastInfo(weatherInfo.list)
     updateCityInfo(weatherInfo.city)
     updateCurrentDay(currentDay)
+    updateLastLocation(location)
     setLoading(false)
   }
 

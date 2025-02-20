@@ -12,7 +12,13 @@ const TemperatureTitle = styled.h1`
 
 const Icon = styled.img`
 width: 100%;
-height: 100%;`
+height: 100%;
+
+@media (max-width: 768px) {
+width: 60%;
+height: 60%;
+}
+`
 
 function CurrentDayCard(props: CurrentDayCardProps){
 
