@@ -6,7 +6,6 @@ const GEO_API_BASE_URL = "https://api.openweathermap.org/geo"
 
 
 async function translateToCoords(location: string){
-    console.log(API_KEY)
     try {
         const geoResponse = await fetch(`${GEO_API_BASE_URL}/1.0/direct?q=${location}&appid=${API_KEY}`)
         
