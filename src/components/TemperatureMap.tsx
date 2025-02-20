@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { CoordMaps, TemperatureMapProps } from "../types/weather";
+const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 
 const mapContainerStyle = {
   width: "80%",
@@ -27,7 +28,7 @@ function TemperatureMap(props: TemperatureMapProps) {
             const x = coord.x;
             const y = coord.y;
             const z = zoom;
-            return `https://tile.openweathermap.org/map/temp_new/${z}/${x}/${y}.png?appid=1dfa222c493b8e999282202df8fdfe4d`;
+            return `https://tile.openweathermap.org/map/temp_new/${z}/${x}/${y}.png?appid=${API_KEY}`;
           },
           tileSize: new google.maps.Size(256, 256),
           opacity: 0.7,
