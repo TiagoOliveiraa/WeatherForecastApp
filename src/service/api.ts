@@ -2,7 +2,7 @@ import { Coordinate, WeatherResponseInfo, WeatherResponseData, CoordMaps} from "
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 const WEATHER_API_BASE_URL = "https://api.openweathermap.org"
-const GEO_API_BASE_URL = "http://api.openweathermap.org/geo"
+const GEO_API_BASE_URL = "https://api.openweathermap.org/geo"
 
 
 async function translateToCoords(location: string){
